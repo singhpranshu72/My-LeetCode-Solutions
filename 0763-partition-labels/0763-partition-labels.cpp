@@ -4,19 +4,17 @@ public:
         unordered_map<char,int>mp;
         for(int i=0;i<s.size();i++)
         {
-            mp[s[i]]=i+1;  // har character ka ending index (last occurence) map krdo 
+           char c=s[i];
+            mp[c]=i;//get the last index of every character
         }
-        int left=0,right=0;
-        // vector<char>v;
-        vector<int>ans;
-        for(int i=0;i<s.size();i++)
-        {
-            right=max(right,mp[s[i]]); // right pointer last occurence of left pointer ko point krega 
-                           // jis char ka last occurence ka index jyda hoga utna bda partition bnega
-            if(i==right-1) // maximum occurenc tk reach kr gye .. right-1 isliye kyonki hmne map me 1 based indexing ki hai aur ye loop 0 based indexing kr rhe hai
-            {
-                ans.push_back(right-left);
-                left=i+1;  // fir left ko agle partion ke liye move kr dia
+        vector<int> ans;
+        int prev=-1;//prev to make parts(it is starting value of any part)
+        int maxi=0;//it will store the last index or say largest partition size
+        for(int i=0;i<s.size();i++){
+            maxi=max(maxi,mp[s[i]]);//in first ex. it will store 8 as a last index is 8 
+            if(maxi==i){// index p phuch gye jha sabhi letters aa gye h aur wo ek partirion ka last hoga
+                ans.push_back(maxi-prev);//just store the size
+                prev=maxi;//initialise prev as maxi
             }
         }
         return ans;
