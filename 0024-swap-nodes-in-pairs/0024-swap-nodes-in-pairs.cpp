@@ -8,6 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+//https://leetcode.com/problems/swap-nodes-in-pairs/discuss/1775033/SWAPPING-NODES-(Not-just-the-values)-oror-Visual-Explanation-oror-Well-Explained-oror-C%2B%2B
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {ListNode* temp=head;
@@ -20,13 +21,13 @@ public:
         
         head = head->next;
         
-        while (curr && nxt) {
+        while (curr && nxt) {//swapping nodes
             if (prev)
-                prev->next = nxt;
-            curr->next = nxt->next;
-            nxt->next = curr;
-            prev = curr;
-            curr = curr->next;
+                prev->next = nxt;//prev is basically a dummy node which will point to head->next
+            curr->next = nxt->next;// 1 points to 3 as after swap LL will be 2 1 3 4
+            nxt->next = curr; 
+            prev = curr;//prev will come to 2
+            curr = curr->next;//curr will be at 3
             if (curr)
                 nxt = curr->next;
         }
