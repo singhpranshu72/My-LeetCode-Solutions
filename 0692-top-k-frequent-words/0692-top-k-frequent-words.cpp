@@ -6,7 +6,7 @@ public:
         priority_queue<pair<int,string>>p;
         for(auto c:m) {p.push({-c.second,c.first});
                         if(p.size() > k) p.pop();}
-        while(k--){
+        while(k--){     
             ans.push_back(p.top().second);
             p.pop();
         }
